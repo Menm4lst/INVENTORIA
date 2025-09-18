@@ -1,0 +1,63 @@
+2025-09-17 21:37:04,849 - core.settings - INFO - Sistema de logging configurado
+2025-09-17 21:37:04,849 - __main__ - INFO - Iniciando Homologador de Aplicaciones v1.0.0
+2025-09-17 21:37:05,952 - __main__ - INFO - Base de datos inicializada en: C:\Users\Antware\OneDrive\homologador.db
+2025-09-17 21:37:06,065 - core.storage - INFO - Backup creado: C:\Users\Antware\OneDrive\backups/homologador_backup_20250917_213706_auto.db
+2025-09-17 21:37:06,072 - core.storage - INFO - Backup creado: C:\Users\Antware\OneDrive\backups/homologador_backup_20250917_213706_auto.db
+2025-09-17 21:37:06,078 - data.seed - INFO - Seed data creado exitosamente. Usuario admin ID: 1
+2025-09-17 21:37:06,079 - core.storage - INFO - Backup creado: C:\Users\Antware\OneDrive\backups/homologador_backup_20250917_213706_auto.db
+2025-09-17 21:37:06,884 - __main__ - INFO - Ventana de login mostrada
+2025-09-17 21:43:44,896 - core.settings - INFO - Sistema de logging configurado
+2025-09-17 21:43:44,896 - __main__ - INFO - Iniciando Homologador de Aplicaciones v1.0.0
+2025-09-17 21:43:46,013 - __main__ - INFO - Base de datos inicializada en: C:\Users\Antware\OneDrive\homologador.db
+2025-09-17 21:43:46,019 - data.seed - INFO - Usuario admin ya existe, omitiendo seed
+2025-09-17 21:43:46,021 - core.storage - INFO - Backup creado: C:\Users\Antware\OneDrive\backups/homologador_backup_20250917_214346_auto.db
+2025-09-17 21:43:46,482 - __main__ - INFO - Ventana de login mostrada
+2025-09-17 21:43:49,271 - core.storage - INFO - Backup creado: C:\Users\Antware\OneDrive\backups/homologador_backup_20250917_214349_auto.db
+2025-09-17 21:43:49,279 - core.storage - INFO - Backup creado: C:\Users\Antware\OneDrive\backups/homologador_backup_20250917_214349_auto.db
+2025-09-17 21:43:49,286 - data.seed - INFO - Login exitoso para usuario: admin
+2025-09-17 21:43:49,286 - ui.login_window - INFO - Login exitoso para: admin
+2025-09-17 21:44:13,779 - core.storage - INFO - Backup creado: C:\Users\Antware\OneDrive\backups/homologador_backup_20250917_214413_auto.db
+2025-09-17 21:44:13,786 - core.storage - INFO - Backup creado: C:\Users\Antware\OneDrive\backups/homologador_backup_20250917_214413_auto.db
+2025-09-17 21:44:13,794 - data.seed - INFO - Contraseña cambiada para usuario ID: 1
+2025-09-17 21:44:14,935 - __main__ - INFO - Login exitoso para usuario: admin
+2025-09-17 21:44:15,306 - __main__ - INFO - Ventana principal mostrada
+2025-09-17 21:46:03,937 - core.storage - INFO - Backup creado: C:\Users\Antware\OneDrive\backups/homologador_backup_20250917_214603_auto.db
+2025-09-17 21:46:03,943 - data.seed - INFO - Logout para usuario: admin
+2025-09-17 21:46:03,961 - core.storage - INFO - Backup creado: C:\Users\Antware\OneDrive\backups/homologador_backup_20250917_214603_auto.db
+2025-09-17 21:46:03,974 - __main__ - INFO - Aplicación cerrada
+2025-09-17 21:46:03,975 - __main__ - INFO - Limpieza de recursos completada
+2025-09-17 21:49:46,561 - core.settings - INFO - Sistema de logging configurado
+2025-09-17 21:49:46,562 - __main__ - INFO - Iniciando Homologador de Aplicaciones v1.0.0
+2025-09-17 21:49:47,651 - __main__ - INFO - Base de datos inicializada en: C:\Users\Antware\OneDrive\homologador.db
+2025-09-17 21:49:47,656 - data.seed - INFO - Usuario admin ya existe, omitiendo seed
+2025-09-17 21:49:47,658 - core.storage - INFO - Backup creado: C:\Users\Antware\OneDrive\backups/homologador_backup_20250917_214947_auto.db
+2025-09-17 21:49:48,106 - __main__ - INFO - Ventana de login mostrada
+2025-09-17 21:49:58,316 - data.seed - WARNING - Intento de login con usuario inexistente: adminadmin
+2025-09-17 21:49:58,319 - core.storage - INFO - Backup creado: C:\Users\Antware\OneDrive\backups/homologador_backup_20250917_214958_auto.db
+2025-09-17 21:49:58,332 - ui.login_window - WARNING - Login fallido: Usuario o contraseña incorrectos
+2025-09-17 21:50:13,482 - data.seed - WARNING - Intento de login con usuario inexistente: adminadmadmini
+2025-09-17 21:50:13,485 - core.storage - INFO - Backup creado: C:\Users\Antware\OneDrive\backups/homologador_backup_20250917_215013_auto.db
+2025-09-17 21:50:13,499 - ui.login_window - WARNING - Login fallido: Usuario o contraseña incorrectos
+2025-09-17 21:50:26,465 - data.seed - WARNING - Intento de login con usuario inexistente: adminaddddm admini
+2025-09-17 21:50:26,468 - core.storage - INFO - Backup creado: C:\Users\Antware\OneDrive\backups/homologador_backup_20250917_215026_auto.db
+2025-09-17 21:50:26,481 - ui.login_window - WARNING - Login fallido: Usuario o contraseña incorrectos
+2025-09-17 21:50:32,710 - core.storage - INFO - Backup creado: C:\Users\Antware\OneDrive\backups/homologador_backup_20250917_215032_auto.db
+2025-09-17 21:50:32,731 - __main__ - INFO - Aplicación cerrada
+2025-09-17 21:50:32,731 - __main__ - INFO - Limpieza de recursos completada
+2025-09-17 21:51:53,091 - core.settings - INFO - Sistema de logging configurado
+2025-09-17 21:51:53,092 - __main__ - INFO - Iniciando Homologador de Aplicaciones v1.0.0
+2025-09-17 21:51:54,449 - __main__ - INFO - Base de datos inicializada en: C:\Users\Antware\OneDrive\homologador.db
+2025-09-17 21:51:54,454 - data.seed - INFO - Usuario admin ya existe, omitiendo seed
+2025-09-17 21:51:54,456 - core.storage - INFO - Backup creado: C:\Users\Antware\OneDrive\backups/homologador_backup_20250917_215154_auto.db
+2025-09-17 21:51:54,555 - __main__ - INFO - Ventana de login mostrada
+2025-09-17 21:52:07,357 - core.storage - INFO - Backup creado: C:\Users\Antware\OneDrive\backups/homologador_backup_20250917_215207_auto.db
+2025-09-17 21:52:07,367 - core.storage - INFO - Backup creado: C:\Users\Antware\OneDrive\backups/homologador_backup_20250917_215207_auto.db
+2025-09-17 21:52:07,375 - data.seed - INFO - Login exitoso para usuario: admin
+2025-09-17 21:52:07,376 - ui.login_window - INFO - Login exitoso para: admin
+2025-09-17 21:52:07,377 - __main__ - INFO - Login exitoso para usuario: admin
+2025-09-17 21:52:07,437 - __main__ - INFO - Ventana principal mostrada
+2025-09-17 21:53:49,434 - core.storage - INFO - Backup creado: C:\Users\Antware\OneDrive\backups/homologador_backup_20250917_215349_auto.db
+2025-09-17 21:53:49,451 - data.seed - INFO - Logout para usuario: admin
+2025-09-17 21:53:49,476 - core.storage - INFO - Backup creado: C:\Users\Antware\OneDrive\backups/homologador_backup_20250917_215349_auto.db
+2025-09-17 21:53:49,496 - __main__ - INFO - Aplicación cerrada
+2025-09-17 21:53:49,497 - __main__ - INFO - Limpieza de recursos completada
