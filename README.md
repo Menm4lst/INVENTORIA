@@ -1,58 +1,90 @@
-[README.md](https://github.com/user-attachments/files/22408872/README.md)
-# Homologador de Aplicaciones
+# 🌟 EXPANSION DE DOMINIO - INVENTORIA
 
-Aplicación de escritorio en Python con PyQt6 para gestión de homologaciones de aplicaciones corporativas.
+**Sistema Profesional de Gestión e Inventario de Aplicaciones**
 
-## Características
+[![Python](https://img.shields.io/badge/Python-3.13-blue.svg)](https://python.org)
+[![PyQt6](https://img.shields.io/badge/PyQt6-GUI-green.svg)](https://pypi.org/project/PyQt6/)
+[![SQLite](https://img.shields.io/badge/SQLite-Database-orange.svg)](https://sqlite.org)
 
-- **Interfaz gráfica** con PyQt6
-- **Base de datos SQLite** con modo WAL y control de concurrencia
-- **Roles de usuario**: admin, editor, viewer
-- **Auditoría completa** de acciones
-- **Backups automáticos**
-- **Exportación a CSV**
+---
 
-## Instalación
+## 📖 DESCRIPCIÓN
 
-1. Instalar dependencias:
+**EXPANSION DE DOMINIO - INVENTORIA** es una aplicación de escritorio profesional desarrollada en **Python** con **PyQt6** que permite gestionar inventarios de aplicaciones con sistema de homologaciones, estados de aprobación, dashboard interactivo y exportación profesional de datos.
+
+### ✨ CARACTERÍSTICAS PRINCIPALES
+
+- 🎛️ **Dashboard Interactivo** con gráficos circulares y métricas
+- 📊 **Sistema de Estados** (Pendiente/Aprobado/Rechazado)
+- 📋 **Gestión Completa** de aplicaciones y homologaciones
+- 📤 **Exportación Profesional** (CSV/Excel) con encoding UTF-8
+- 🔔 **Sistema de Notificaciones** interactivas (7 segundos, cerrables)
+- 🎨 **Temas Adaptativos** (Claro/Oscuro automático)
+- 💾 **Base de Datos SQLite** portable y eficiente
+- 🔐 **Sistema de Usuarios** con roles diferenciados
+- 📦 **Versión Portátil** 100% autocontenida
+
+---
+
+## 🚀 INSTALACIÓN Y USO
+
+### Opción 1: Ejecutable Portátil (Recomendado)
+
 ```bash
+# Descargar y extraer
+1. Descargar carpeta dist_portable/
+2. Ejecutar: EXPANSION_DE_DOMINIO_INVENTORIA_PORTABLE.exe
+3. ¡Listo! No requiere instalación de Python
+```
+
+### Opción 2: Desde Código Fuente
+
+```bash
+# Clonar repositorio
+git clone https://github.com/Menm4lst/INVENTORIA.git
+cd INVENTORIA
+
+# Instalar dependencias
 pip install -r requirements.txt
+
+# Ejecutar aplicación
+python run_app.py
 ```
 
-2. Ejecutar la aplicación:
-```bash
-python app.py
-```
+---
 
-## Configuración
-
-La aplicación busca la configuración en el siguiente orden:
-1. Argumento CLI `--db`
-2. Variable de entorno `HOMOLOGADOR_DB`
-3. Archivo `config.json`
-4. Autodetección de OneDrive
-
-## Usuario por defecto
-
-- **Usuario**: admin
-- **Contraseña**: admin123 (debe cambiarse en el primer login)
-
-## Estructura del proyecto
+## 📁 ESTRUCTURA DEL PROYECTO
 
 ```
-homologador/
-├── app.py                  # Punto de entrada
-├── core/
-│   ├── settings.py         # Configuración
-│   └── storage.py          # Gestión de BD
-├── data/
-│   ├── schema.sql          # Esquema de BD
-│   └── seed.py             # Datos iniciales
-├── ui/
-│   ├── login_window.py     # Ventana de login
-│   ├── main_window.py      # Ventana principal
-│   ├── homologation_form.py # Formulario
-│   └── details_view.py     # Vista de detalles
-├── config.json             # Configuración
-└── requirements.txt        # Dependencias
+📂 INVENTORIA/
+├── 📂 homologador/           # Código fuente principal
+│   ├── 📂 core/              # Lógica de negocio
+│   ├── 📂 data/              # Base de datos y esquemas
+│   └── 📂 ui/                # Interfaz de usuario
+├── 📂 dist_portable/         # Versión portátil completa
+├── 📂 images/                # Recursos multimedia
+├── 📄 run_app.py             # Script de ejecución
+├── 📄 requirements.txt       # Dependencias Python
+└── 📄 README.md              # Documentación
 ```
+
+---
+
+## 🛠️ TECNOLOGÍAS
+
+| Componente | Tecnología | Versión |
+|------------|------------|---------|
+| **Lenguaje** | Python | 3.13+ |
+| **GUI** | PyQt6 | Latest |
+| **Base de Datos** | SQLite | 3.x |
+| **Gráficos** | matplotlib | Latest |
+| **Exportación** | pandas, openpyxl | Latest |
+| **Compilación** | PyInstaller | 6.14.2 |
+
+---
+
+## 👨‍💻 AUTOR
+
+**Antware** - *SysAdmin y Desarrollador*
+- GitHub: [@Menm4lst](https://github.com/Menm4lst)
+- Proyecto: [INVENTORIA](https://github.com/Menm4lst/INVENTORIA)

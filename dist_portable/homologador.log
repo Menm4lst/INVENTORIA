@@ -1,0 +1,71 @@
+2025-10-13 14:24:44,755 - homologador.core.settings - INFO - Sistema de logging configurado
+2025-10-13 14:24:44,755 - homologador.app - INFO - Iniciando EXPANSION DE DOMINIO - INVENTORIA v1.0.0
+2025-10-13 14:24:45,955 - homologador.app - INFO - Base de datos inicializada en: C:\Users\Antware\OneDrive\homologador.db
+2025-10-13 14:24:45,963 - homologador.data.seed - INFO - Usuario admin ya existe, omitiendo seed
+2025-10-13 14:24:45,969 - homologador.core.storage - INFO - Backup creado: C:\Users\Antware\OneDrive\backups/homologador_backup_20251013_142445_auto.db
+2025-10-13 14:24:53,005 - homologador.app - INFO - Ventana de login mostrada
+2025-10-13 14:24:54,500 - homologador.core.storage - INFO - Backup creado: C:\Users\Antware\OneDrive\backups/homologador_backup_20251013_142454_auto.db
+2025-10-13 14:24:54,555 - homologador.core.storage - INFO - Backup creado: C:\Users\Antware\OneDrive\backups/homologador_backup_20251013_142454_auto.db
+2025-10-13 14:24:54,610 - homologador.data.seed - INFO - Login exitoso para usuario: admin
+2025-10-13 14:24:54,610 - homologador.ui.final_login - INFO - Login exitoso para: admin
+2025-10-13 14:24:54,610 - homologador.app - INFO - Login exitoso para usuario: admin
+2025-10-13 14:24:56,163 - homologador.app - INFO - Ventana principal mostrada
+2025-10-13 14:25:10,523 - homologador.core.storage - INFO - Backup creado: C:\Users\Antware\OneDrive\backups/homologador_backup_20251013_142510_auto.db
+2025-10-13 14:25:10,605 - homologador.app - INFO - Aplicación cerrada
+2025-10-13 14:25:10,607 - homologador.core.storage - INFO - Backup creado: C:\Users\Antware\OneDrive\backups/homologador_backup_20251013_142510_auto.db
+2025-10-13 14:25:10,669 - homologador.data.seed - INFO - Logout para usuario: admin
+2025-10-13 14:25:10,669 - homologador.app - INFO - Limpieza de recursos completada
+2025-10-13 14:38:51,627 - homologador.core.settings - INFO - Sistema de logging configurado
+2025-10-13 14:38:51,628 - homologador.app - INFO - Iniciando EXPANSION DE DOMINIO - INVENTORIA v1.0.0
+2025-10-13 14:38:52,852 - homologador.app - INFO - Base de datos inicializada en: C:\Users\Antware\OneDrive\homologador.db
+2025-10-13 14:38:52,857 - homologador.data.seed - INFO - Usuario admin ya existe, omitiendo seed
+2025-10-13 14:38:52,860 - homologador.core.storage - INFO - Backup creado: C:\Users\Antware\OneDrive\backups/homologador_backup_20251013_143852_auto.db
+2025-10-13 14:39:17,305 - homologador.app - INFO - Ventana de login mostrada
+2025-10-13 14:39:18,835 - homologador.core.storage - INFO - Backup creado: C:\Users\Antware\OneDrive\backups/homologador_backup_20251013_143918_auto.db
+2025-10-13 14:39:18,893 - homologador.core.storage - INFO - Backup creado: C:\Users\Antware\OneDrive\backups/homologador_backup_20251013_143918_auto.db
+2025-10-13 14:39:18,944 - homologador.data.seed - INFO - Login exitoso para usuario: admin
+2025-10-13 14:39:18,944 - homologador.ui.final_login - INFO - Login exitoso para: admin
+2025-10-13 14:39:18,944 - homologador.app - INFO - Login exitoso para usuario: admin
+2025-10-13 14:39:20,840 - homologador.app - INFO - Ventana principal mostrada
+2025-10-13 14:41:24,085 - homologador.core.storage - INFO - Backup creado: C:\Users\Antware\OneDrive\backups/homologador_backup_20251013_144124_auto.db
+2025-10-13 16:05:19,932 - homologador.core.storage - INFO - Backup creado: C:\Users\Antware\OneDrive\backups/homologador_backup_20251013_160519_auto.db
+2025-10-13 16:05:20,338 - homologador.app - INFO - Aplicación cerrada
+2025-10-13 16:05:20,341 - homologador.core.storage - INFO - Backup creado: C:\Users\Antware\OneDrive\backups/homologador_backup_20251013_160520_auto.db
+2025-10-13 16:05:20,800 - homologador.data.seed - INFO - Logout para usuario: admin
+2025-10-13 16:05:20,800 - homologador.app - INFO - Limpieza de recursos completada
+2025-10-13 16:15:31,860 - homologador.core.settings - INFO - Sistema de logging configurado
+2025-10-13 16:15:31,872 - homologador.app - INFO - Iniciando EXPANSION DE DOMINIO - INVENTORIA v1.0.0
+2025-10-13 16:15:33,123 - homologador.app - INFO - Base de datos inicializada en: C:\Users\Antware\OneDrive\homologador.db
+2025-10-13 16:15:33,129 - homologador.data.seed - INFO - Usuario admin ya existe, omitiendo seed
+2025-10-13 16:15:33,131 - homologador.core.storage - INFO - Backup creado: C:\Users\Antware\OneDrive\backups/homologador_backup_20251013_161533_auto.db
+2025-10-13 16:15:36,568 - homologador.app - INFO - Ventana de login mostrada
+2025-10-13 16:15:37,571 - homologador.core.storage - INFO - Backup creado: C:\Users\Antware\OneDrive\backups/homologador_backup_20251013_161537_auto.db
+2025-10-13 16:15:37,696 - homologador.core.storage - INFO - Backup creado: C:\Users\Antware\OneDrive\backups/homologador_backup_20251013_161537_auto.db
+2025-10-13 16:15:37,827 - homologador.data.seed - INFO - Login exitoso para usuario: admin
+2025-10-13 16:15:37,827 - homologador.ui.final_login - INFO - Login exitoso para: admin
+2025-10-13 16:15:37,827 - homologador.app - INFO - Login exitoso para usuario: admin
+2025-10-13 16:15:38,417 - homologador.ui.main_window - INFO - Icono de ventana configurado: C:\Users\Antware\AppData\Local\Temp\_MEI35242\images/fondo.png
+2025-10-13 16:15:39,330 - homologador.app - INFO - Ventana principal mostrada
+2025-10-13 16:15:47,163 - homologador.core.storage - INFO - Backup creado: C:\Users\Antware\OneDrive\backups/homologador_backup_20251013_161547_auto.db
+2025-10-13 16:15:47,465 - homologador.app - INFO - Aplicación cerrada
+2025-10-13 16:15:47,470 - homologador.core.storage - INFO - Backup creado: C:\Users\Antware\OneDrive\backups/homologador_backup_20251013_161547_auto.db
+2025-10-13 16:15:47,785 - homologador.data.seed - INFO - Logout para usuario: admin
+2025-10-13 16:15:47,785 - homologador.app - INFO - Limpieza de recursos completada
+2025-10-13 16:31:09,055 - homologador.core.settings - INFO - Sistema de logging configurado
+2025-10-13 16:31:09,057 - homologador.app - INFO - Iniciando EXPANSION DE DOMINIO - INVENTORIA v1.0.0
+2025-10-13 16:31:10,250 - homologador.app - INFO - Base de datos inicializada en: C:\Users\Antware\OneDrive\homologador.db
+2025-10-13 16:31:10,259 - homologador.data.seed - INFO - Usuario admin ya existe, omitiendo seed
+2025-10-13 16:31:10,263 - homologador.core.storage - INFO - Backup creado: C:\Users\Antware\OneDrive\backups/homologador_backup_20251013_163110_auto.db
+2025-10-13 16:31:15,111 - homologador.app - INFO - Ventana de login mostrada
+2025-10-13 16:31:15,878 - homologador.core.storage - INFO - Backup creado: C:\Users\Antware\OneDrive\backups/homologador_backup_20251013_163115_auto.db
+2025-10-13 16:31:15,989 - homologador.core.storage - INFO - Backup creado: C:\Users\Antware\OneDrive\backups/homologador_backup_20251013_163115_auto.db
+2025-10-13 16:31:16,105 - homologador.data.seed - INFO - Login exitoso para usuario: admin
+2025-10-13 16:31:16,106 - homologador.ui.final_login - INFO - Login exitoso para: admin
+2025-10-13 16:31:16,106 - homologador.app - INFO - Login exitoso para usuario: admin
+2025-10-13 16:31:16,546 - homologador.ui.main_window - INFO - Icono de ventana configurado: C:\Users\Antware\AppData\Local\Temp\_MEI20602\images/fondo.png
+2025-10-13 16:31:17,112 - homologador.app - INFO - Ventana principal mostrada
+2025-10-13 16:31:18,892 - homologador.core.storage - INFO - Backup creado: C:\Users\Antware\OneDrive\backups/homologador_backup_20251013_163118_auto.db
+2025-10-13 16:31:18,989 - homologador.app - INFO - Aplicación cerrada
+2025-10-13 16:31:18,991 - homologador.core.storage - INFO - Backup creado: C:\Users\Antware\OneDrive\backups/homologador_backup_20251013_163118_auto.db
+2025-10-13 16:31:19,077 - homologador.data.seed - INFO - Logout para usuario: admin
+2025-10-13 16:31:19,077 - homologador.app - INFO - Limpieza de recursos completada
