@@ -36,37 +36,25 @@ def get_resource_path(relative_path):
 
 def get_database_path():
     """
-    Obtiene la ruta a la base de datos de manera portátil
+    Obtiene la ruta a la base de datos SIEMPRE en la carpeta del ejecutable
     
     Returns:
-        str: Ruta a la base de datos
+        str: Ruta a la base de datos EN LA CARPETA DEL EJECUTABLE
     """
-    # Buscar la BD en el directorio del ejecutable
+    # FORZAR ubicación en la carpeta del ejecutable
     if hasattr(sys, '_MEIPASS'):
-        # Ejecutable PyInstaller - BD está en el directorio de trabajo
-        db_path = os.path.join(os.getcwd(), "homologador.db")
-        if os.path.exists(db_path):
-            return db_path
-        
-        # Si no está en cwd, buscar en _MEIPASS
-        db_path = os.path.join(sys._MEIPASS, "homologador.db")
-        if os.path.exists(db_path):
-            return db_path
-    
-    # Script Python normal - buscar en ubicaciones conocidas
-    possible_paths = [
-        "homologador.db",
-        "dist/homologador.db", 
-        "dist_portable/homologador.db",
-        "C:/Users/Antware/OneDrive/homologador.db"
-    ]
-    
-    for path in possible_paths:
-        if os.path.exists(path):
-            return os.path.abspath(path)
-    
-    # Si no se encuentra, usar ruta por defecto en el directorio del ejecutable
-    return os.path.join(os.path.dirname(sys.executable), "homologador.db")
+        # Ejecutable PyInstaller - BD debe estar en el directorio de trabajo actual
+        executable_dir = os.path.dirname(sys.executable)
+        db_path = os.path.join(executable_dir, "homologador.db")
+        print(f"🔧 [PORTABLE] Ejecutable detectado, BD en: {db_path}")
+        return db_path
+    else:
+        # Script Python normal - BD en el directorio del proyecto
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        project_root = os.path.dirname(os.path.dirname(current_dir))
+        db_path = os.path.join(project_root, "homologador.db")
+        print(f"🔧 [DESARROLLO] Script Python, BD en: {db_path}")
+        return db_path
 
 def get_images_path():
     """

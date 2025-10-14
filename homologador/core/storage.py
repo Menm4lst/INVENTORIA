@@ -124,10 +124,34 @@ class DatabaseManager:
     def _acquire_file_lock(self):
         """Adquiere un lock exclusivo del archivo de base de datos."""
         try:
+            # Verificar que tenemos permisos de escritura en el directorio
+            db_dir = os.path.dirname(self.db_path)
+            if not os.access(db_dir, os.W_OK):
+                raise DatabaseError(f"Sin permisos de escritura en directorio: {db_dir}")
+            
             lock_path = f"{self.db_path}.lock"
+            
+            # Intentar eliminar lock file anterior si existe
+            if os.path.exists(lock_path):
+                try:
+                    os.remove(lock_path)
+                    logger.debug(f"Lock file anterior eliminado: {lock_path}")
+                except PermissionError:
+                    logger.warning(f"No se pudo eliminar lock file anterior: {lock_path}")
+            
+            # Crear nuevo lock file
             self._lock_file = open(lock_path, 'w')
             portalocker.lock(self._lock_file, portalocker.LOCK_EX | portalocker.LOCK_NB)
-            logger.debug("File lock adquirido")
+            logger.debug(f"🔒 File lock adquirido: {lock_path}")
+            
+        except PermissionError as e:
+            error_msg = f"Error de permisos adquiriendo lock (error 13) permission denied {self.db_path}.lock"
+            logger.error(error_msg)
+            raise DatabaseError(error_msg)
+        except portalocker.LockException as e:
+            error_msg = f"No se pudo adquirir lock exclusivo: {e}"
+            logger.error(error_msg)
+            raise DatabaseError(error_msg)
             
         except portalocker.LockException:
             if self._lock_file:

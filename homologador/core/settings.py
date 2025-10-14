@@ -104,18 +104,36 @@ class Settings:
             logging.getLogger().setLevel(logging.DEBUG)
     
     def _resolve_paths(self):
-        """Resuelve las rutas finales, incluyendo autodetección de OneDrive."""
-        # Si db_path es relativo, intentar autodetección
-        if not os.path.isabs(self.config["db_path"]):
-            detected_path = self._detect_onedrive_path()
-            if detected_path:
-                self.config["db_path"] = os.path.join(detected_path, self.config["db_path"])
-                logger.info(f"DB autodetectada en: {self.config['db_path']}")
-        
-        # Resolver backups_dir relativo a la ubicación de la DB
-        if not os.path.isabs(self.config["backups_dir"]):
-            db_dir = os.path.dirname(self.config["db_path"])
-            self.config["backups_dir"] = os.path.join(db_dir, self.config["backups_dir"])
+        """
+        Resuelve las rutas finales FORZANDO el uso de la carpeta del ejecutable.
+        NO autodetección de OneDrive - SOLO carpeta local del ejecutable.
+        """
+        # IMPORTAR función portable para forzar ubicación local
+        try:
+            from .portable import get_database_path, get_backups_path
+            
+            # FORZAR ubicación de BD en carpeta del ejecutable
+            self.config["db_path"] = get_database_path()
+            logger.info(f"🔧 [FORZADO] BD ubicada en: {self.config['db_path']}")
+            
+            # FORZAR ubicación de backups en carpeta del ejecutable
+            self.config["backups_dir"] = get_backups_path()
+            logger.info(f"🔧 [FORZADO] Backups en: {self.config['backups_dir']}")
+            
+        except ImportError as e:
+            logger.error(f"Error importando portable: {e}")
+            # Fallback: usar directorio actual
+            import sys
+            if hasattr(sys, '_MEIPASS'):
+                # Ejecutable
+                base_dir = os.path.dirname(sys.executable)
+            else:
+                # Script
+                base_dir = os.path.abspath(".")
+            
+            self.config["db_path"] = os.path.join(base_dir, "homologador.db")
+            self.config["backups_dir"] = os.path.join(base_dir, "backups")
+            logger.warning(f"🔧 [FALLBACK] BD en: {self.config['db_path']}")
         
         # Crear directorios si no existen
         self._ensure_directories()
