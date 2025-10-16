@@ -280,8 +280,8 @@ class HomologationRepository:
         query = """
         INSERT INTO homologations 
         (real_name, logical_name, kb_url, kb_sync, homologation_date, 
-         has_previous_versions, repository_location, details, created_by)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+         has_previous_versions, repository_location, details, created_by, status)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         """
         
         params = (
@@ -293,7 +293,8 @@ class HomologationRepository:
             homologation_data.get('has_previous_versions', False),
             homologation_data.get('repository_location'),
             homologation_data.get('details'),
-            homologation_data['created_by']
+            homologation_data['created_by'],
+            homologation_data.get('status', 'Pendiente')
         )
         
         return self.db.execute_insert(query, params)
@@ -346,7 +347,7 @@ class HomologationRepository:
         
         updatable_fields = [
             'real_name', 'logical_name', 'kb_url', 'kb_sync', 'homologation_date',
-            'has_previous_versions', 'repository_location', 'details'
+            'has_previous_versions', 'repository_location', 'details', 'status'
         ]
         
         for field in updatable_fields:

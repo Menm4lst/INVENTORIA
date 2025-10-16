@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-🔧 UTILIDADES PARA APLICACIÓN PORTÁTIL
+UTILIDADES PARA APLICACIÓN PORTÁTIL
 EXPANSION DE DOMINIO - INVENTORIA v1.0.0
 Desarrollado por: Antware (SysAdmin)
 
@@ -43,17 +43,17 @@ def get_database_path():
     """
     # FORZAR ubicación en la carpeta del ejecutable
     if hasattr(sys, '_MEIPASS'):
-        # Ejecutable PyInstaller - BD debe estar en el directorio de trabajo actual
+        # Ejecutable PyInstaller - BD debe estar en data/homologador.db
         executable_dir = os.path.dirname(sys.executable)
-        db_path = os.path.join(executable_dir, "homologador.db")
-        print(f"🔧 [PORTABLE] Ejecutable detectado, BD en: {db_path}")
+        db_path = os.path.join(executable_dir, "data", "homologador.db")
+        print(f"[PORTABLE] Ejecutable detectado, BD en: {db_path}")
         return db_path
     else:
         # Script Python normal - BD en el directorio del proyecto
         current_dir = os.path.dirname(os.path.abspath(__file__))
         project_root = os.path.dirname(os.path.dirname(current_dir))
         db_path = os.path.join(project_root, "homologador.db")
-        print(f"🔧 [DESARROLLO] Script Python, BD en: {db_path}")
+        print(f"[DESARROLLO] Script Python, BD en: {db_path}")
         return db_path
 
 def get_images_path():
@@ -125,11 +125,11 @@ def print_portable_debug():
     """
     info = get_app_info()
     
-    print("🔧 INFORMACIÓN DE APLICACIÓN PORTÁTIL:")
+    print("INFORMACIÓN DE APLICACIÓN PORTÁTIL:")
     print(f"   📦 Ejecutable congelado: {'Sí' if info['is_frozen'] else 'No'}")
     print(f"   🚀 Ejecutable: {info['executable_path']}")
     print(f"   📁 Directorio de trabajo: {info['working_directory']}")
-    print(f"   💾 Base de datos: {info['database_path']}")
+    print(f"   Base de datos: {info['database_path']}")
     print(f"   🖼️ Imágenes: {info['images_path']}")
     print(f"   📋 Backups: {info['backups_path']}")
     

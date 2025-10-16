@@ -9,7 +9,8 @@ from PyQt6.QtWidgets import (
     QLabel, QLineEdit, QPushButton, QMessageBox, QFrame
 )
 from PyQt6.QtCore import Qt, pyqtSignal
-from PyQt6.QtGui import QFont, QPalette, QColor
+from PyQt6.QtGui import QFont, QPalette, QColor, QIcon
+from pathlib import Path
 
 from data.seed import get_auth_service, AuthenticationError
 
@@ -30,6 +31,7 @@ class FinalLoginWindow(QWidget):
         """Configura la interfaz de usuario."""
         self.setWindowTitle("Homologador - Login")
         self.resize(450, 350)
+        self.setup_window_icon()  # Configurar icono de ventana
         
         # Layout principal
         main_layout = QVBoxLayout(self)
@@ -153,3 +155,35 @@ class FinalLoginWindow(QWidget):
             self.status_label.setStyleSheet("color: red; font-weight: bold;")
             self.login_button.setEnabled(True)
             self.login_button.setText("Iniciar Sesión")
+
+    def setup_window_icon(self):
+        """Configura el icono de la ventana."""
+        try:
+            # Buscar el icono en directorios comunes
+            possible_paths = [
+                Path(__file__).parent.parent / "assets" / "fondo.ico",  # Nuevo icono principal
+                Path(__file__).parent.parent.parent / "assets" / "fondo.ico", 
+                Path("assets/fondo.ico"),
+                Path("fondo.ico"),
+                # Fallback al icono anterior
+                Path(__file__).parent.parent / "assets" / "icon.ico",
+                Path(__file__).parent.parent.parent / "assets" / "icon.ico", 
+                Path("assets/icon.ico"),
+                Path("icon.ico")
+            ]
+            
+            icon_found = False
+            for icon_path in possible_paths:
+                if icon_path.exists():
+                    icon = QIcon(str(icon_path))
+                    self.setWindowIcon(icon)
+                    icon_found = True
+                    break
+            
+            if not icon_found:
+                # Usar icono predeterminado del sistema
+                self.setWindowIcon(self.style().standardIcon(self.style().StandardPixmap.SP_ComputerIcon))
+                
+        except Exception as e:
+            # Si hay error, usar icono predeterminado
+            self.setWindowIcon(self.style().standardIcon(self.style().StandardPixmap.SP_ComputerIcon))

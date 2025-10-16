@@ -199,6 +199,7 @@ SELECT
     h.has_previous_versions,
     h.repository_location,
     h.details,
+    h.status,
     u.username as created_by_username,
     u.full_name as created_by_full_name,
     h.created_at,

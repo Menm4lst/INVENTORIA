@@ -84,10 +84,12 @@ temp/
 *.tmp
 *.temp
 
-# Compilation artifacts (mantener solo dist_portable/)
+# Compilation artifacts
 build/
 dist/
-!dist_portable/
+dist_homologador/
+build_temp/
+*.spec
 
 # Paquetes específicos del proyecto
 Paquete_*/

@@ -15,12 +15,12 @@ from PyQt6.QtWidgets import (
     QLineEdit, QDateEdit, QComboBox, QLabel, QFrame, QSplitter,
     QMessageBox, QFileDialog, QProgressBar, QStatusBar, QMenuBar,
     QToolBar, QSpacerItem, QSizePolicy, QGroupBox, QGridLayout,
-    QApplication, QAbstractItemView, QSpinBox
+    QApplication, QAbstractItemView, QSpinBox, QTabWidget
 )
 from PyQt6.QtCore import Qt, QDate, pyqtSignal, QThread, pyqtSlot, QTimer
 from PyQt6.QtGui import QAction, QIcon, QFont
 
-from core.storage import get_homologation_repository, get_audit_repository
+from core.storage import get_homologation_repository, get_audit_repository, get_database_manager
 from data.seed import get_auth_service
 from .theme import (
     set_widget_style_class, toggle_theme, apply_theme_from_settings, 
@@ -29,6 +29,7 @@ from .theme import (
 from .homologation_form import HomologationFormDialog
 from .details_view import show_homologation_details
 from .notifications import show_info, show_success, show_warning, show_error
+from .dashboard_advanced import DashboardWidget
 
 logger = logging.getLogger(__name__)
 
@@ -668,13 +669,29 @@ class MainWindow(QMainWindow):
         
     def setup_ui(self):
         """Configura la interfaz de usuario."""
-        self.setWindowTitle("Homologador de Aplicaciones")
-        self.resize(1200, 700)
+        self.setWindowTitle("EXPANSION DE DOMINIO - INVENTORIA - Sistema de Gestión")
+        self.resize(1400, 800)
+        
+        # Configurar icono de la ventana
+        self.setup_window_icon()
         
         # Widget central
         central_widget = QWidget()
         self.setCentralWidget(central_widget)
         main_layout = QVBoxLayout(central_widget)
+        
+        # Crear pestañas principales
+        self.tab_widget = QTabWidget()
+        main_layout.addWidget(self.tab_widget)
+        
+        # Pestaña 1: Dashboard
+        db_manager = get_database_manager()
+        self.dashboard_widget = DashboardWidget(db_manager.db_path)
+        self.tab_widget.addTab(self.dashboard_widget, "📊 Dashboard")
+        
+        # Pestaña 2: Gestión de Homologaciones
+        homologation_widget = QWidget()
+        homolog_layout = QVBoxLayout(homologation_widget)
         
         # Splitter para dividir filtros y tabla
         splitter = QSplitter(Qt.Orientation.Horizontal)
@@ -693,14 +710,13 @@ class MainWindow(QMainWindow):
         
         # Establecer proporciones iniciales
         splitter.setSizes([int(self.width() * 0.25), int(self.width() * 0.75)])
-        
-        main_layout.addWidget(splitter)
+        homolog_layout.addWidget(splitter)
         
         # Control de paginación
         self.pagination_widget = PaginationWidget()
         self.pagination_widget.page_changed.connect(self.on_page_changed)
         self.pagination_widget.page_size_changed.connect(self.on_page_size_changed)
-        main_layout.addWidget(self.pagination_widget)
+        homolog_layout.addWidget(self.pagination_widget)
         
         # Barra de botones
         button_layout = QHBoxLayout()
@@ -718,14 +734,27 @@ class MainWindow(QMainWindow):
             edit_button.clicked.connect(self.edit_homologation)
             button_layout.addWidget(edit_button)
             
-            if is_admin:
-                delete_button = QPushButton("Eliminar")
-                delete_button.clicked.connect(self.delete_homologation)
-                button_layout.addWidget(delete_button)
+        delete_button = QPushButton("Eliminar")
+        delete_button.clicked.connect(self.delete_homologation)
+        button_layout.addWidget(delete_button)
         
-        details_button = QPushButton("Ver Detalles")
-        details_button.clicked.connect(self.view_details)
-        button_layout.addWidget(details_button)
+        button_layout.addStretch()
+        
+        export_button = QPushButton("Exportar")
+        export_button.clicked.connect(self.export_data)
+        button_layout.addWidget(export_button)
+        
+        refresh_button = QPushButton("Actualizar")
+        refresh_button.clicked.connect(self.refresh_data)
+        button_layout.addWidget(refresh_button)
+        
+        homolog_layout.addLayout(button_layout)
+        
+        self.tab_widget.addTab(homologation_widget, "📋 Homologaciones")
+        
+        # Configurar menú y barra de herramientas
+        self.setup_menu()
+        self.setup_toolbar()
         
         # Espaciador
         button_layout.addItem(QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum))
@@ -826,6 +855,42 @@ class MainWindow(QMainWindow):
         self.addToolBar(toolbar)
         
         # TODO: Agregar iconos y acciones a la barra
+    
+    def setup_window_icon(self):
+        """Configura el icono de la ventana."""
+        try:
+            # Intentar cargar el icono desde ruta relativa
+            import os
+            from pathlib import Path
+            
+            # Buscar el icono en directorios comunes
+            possible_paths = [
+                Path(__file__).parent.parent / "assets" / "fondo.ico",  # Nuevo icono principal
+                Path(__file__).parent.parent.parent / "assets" / "fondo.ico", 
+                Path("assets/fondo.ico"),
+                Path("fondo.ico"),
+                # Fallback al icono anterior
+                Path(__file__).parent.parent / "assets" / "icon.ico",
+                Path(__file__).parent.parent.parent / "assets" / "icon.ico", 
+                Path("assets/icon.ico"),
+                Path("icon.ico")
+            ]
+            
+            icon_found = False
+            for icon_path in possible_paths:
+                if icon_path.exists():
+                    icon = QIcon(str(icon_path))
+                    self.setWindowIcon(icon)
+                    icon_found = True
+                    break
+            
+            if not icon_found:
+                # Usar icono predeterminado del sistema
+                self.setWindowIcon(self.style().standardIcon(self.style().StandardPixmap.SP_ComputerIcon))
+                
+        except Exception as e:
+            # Si hay error, usar icono predeterminado
+            self.setWindowIcon(self.style().standardIcon(self.style().StandardPixmap.SP_ComputerIcon))
     
     def setup_styles(self):
         """Aplica estilos para mejorar la visibilidad en tema oscuro."""
