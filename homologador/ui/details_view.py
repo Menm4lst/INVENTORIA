@@ -230,7 +230,7 @@ class HomologationDetailsDialog(QDialog):
         # Información básica en una línea
         self.info_label = QLabel()
         self.info_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        self.info_label.setStyleSheet("color: #666; font-size: 12px; margin-top: 5px;")
+        self.info_label.setStyleSheet("color: #cccccc; font-size: 12px; margin-top: 5px;")
         header_layout.addWidget(self.info_label)
         
         layout.addWidget(header_frame)
@@ -276,7 +276,7 @@ class HomologationDetailsDialog(QDialog):
         
         # Nombre Real
         self.real_name_label = QLabel()
-        self.real_name_label.setStyleSheet("font-weight: bold; font-size: 12pt;")
+        self.real_name_label.setStyleSheet("font-weight: bold; font-size: 12pt; color: #ffffff;")
         form_layout.addRow("Nombre Real:", self.real_name_label)
         
         # Nombre Lógico
@@ -399,59 +399,120 @@ class HomologationDetailsDialog(QDialog):
         """Configura estilos CSS."""
         self.setStyleSheet("""
             QDialog {
-                background-color: #f8f9fa;
+                background-color: #222222;
+                color: #ffffff;
             }
             
             QGroupBox {
                 font-weight: bold;
-                border: 2px solid #cccccc;
+                border: 2px solid #555555;
                 border-radius: 8px;
                 margin-top: 10px;
                 padding-top: 10px;
+                color: #ffffff;
+                background-color: #2d2d2d;
             }
             
             QGroupBox::title {
                 subcontrol-origin: margin;
                 left: 10px;
                 padding: 0 5px 0 5px;
-                color: #495057;
+                color: #ffffff;
+                background-color: #222222;
             }
             
             QLabel {
                 padding: 4px;
+                color: #ffffff;
+                background-color: transparent;
             }
             
             QTextEdit {
-                border: 1px solid #dee2e6;
+                border: 1px solid #555555;
                 border-radius: 4px;
-                background-color: white;
+                background-color: #3c3c3c;
+                color: #ffffff;
                 padding: 8px;
+                selection-background-color: #0078d4;
+                selection-color: #ffffff;
             }
             
             QPushButton {
                 padding: 8px 16px;
-                border: none;
+                border: 1px solid #555555;
                 border-radius: 4px;
                 font-weight: bold;
                 min-width: 80px;
+                background-color: #3c3c3c;
+                color: #ffffff;
             }
             
-            QPushButton:not([default="true"]) {
-                background-color: #6c757d;
-                color: white;
+            QPushButton:hover {
+                background-color: #4a4a4a;
+                border-color: #666666;
             }
             
-            QPushButton:not([default="true"]):hover {
-                background-color: #545b62;
+            QPushButton:pressed {
+                background-color: #2a2a2a;
             }
             
             QPushButton[default="true"] {
-                background-color: #28a745;
-                color: white;
+                background-color: #0078d4;
+                color: #ffffff;
+                border-color: #0078d4;
             }
             
             QPushButton[default="true"]:hover {
-                background-color: #218838;
+                background-color: #106ebe;
+                border-color: #106ebe;
+            }
+            
+            QScrollArea {
+                border: 1px solid #555555;
+                background-color: #2d2d2d;
+            }
+            
+            QScrollBar:vertical {
+                border: none;
+                background-color: #2d2d2d;
+                width: 14px;
+                margin: 15px 0 15px 0;
+            }
+            
+            QScrollBar::handle:vertical {
+                background-color: #5a5a5a;
+                min-height: 30px;
+                border-radius: 4px;
+            }
+            
+            QScrollBar::handle:vertical:hover {
+                background-color: #6a6a6a;
+            }
+            
+            QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
+                border: none;
+                background: none;
+            }
+            
+            QMessageBox {
+                background-color: #222222;
+                color: #ffffff;
+            }
+            
+            QMessageBox QLabel {
+                color: #ffffff;
+            }
+            
+            QMessageBox QPushButton {
+                background-color: #3c3c3c;
+                color: #ffffff;
+                border: 1px solid #555555;
+                padding: 6px 12px;
+                border-radius: 4px;
+            }
+            
+            QMessageBox QPushButton:hover {
+                background-color: #4a4a4a;
             }
         """)
     
@@ -594,7 +655,7 @@ class HomologationDetailsDialog(QDialog):
         clipboard_text = "\n".join(text_info)
         
         # Copiar al portapapeles
-        clipboard = QClipboard()
+        clipboard = QApplication.clipboard()
         clipboard.setText(clipboard_text)
         
         QMessageBox.information(self, "Copiado", "Información copiada al portapapeles")

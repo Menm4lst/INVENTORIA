@@ -84,12 +84,15 @@ temp/
 *.tmp
 *.temp
 
-# Compilation artifacts
+# Compilation artifacts (excluir compilaciones temporales, mantener releases)
 build/
 dist/
 dist_homologador/
 build_temp/
 *.spec
+
+# Keep releases folder for distribution
+!releases/
 
 # Paquetes específicos del proyecto
 Paquete_*/

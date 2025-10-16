@@ -1,0 +1,2 @@
+releases/**/*.exe filter=lfs diff=lfs merge=lfs -text
+releases/**/*.db filter=lfs diff=lfs merge=lfs -text

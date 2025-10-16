@@ -419,9 +419,11 @@ class DashboardWidget(QWidget):
         self.metrics_cards['rejected'] = MetricCard("Rechazadas", "0", "Requieren corrección", "❌", "#dc3545")
         self.metrics_cards['this_month'] = MetricCard("Este Mes", "0", "Homologaciones nuevas", "📅", "#17a2b8")
         self.metrics_cards['avg_time'] = MetricCard("Tiempo Promedio", "0 días", "Duración del proceso", "⏰", "#6f42c1")
+        self.metrics_cards['apps_percent'] = MetricCard("APPS%", "0", "Aplicaciones APPS%", "🔧", "#ff6b6b")
+        self.metrics_cards['aesa'] = MetricCard("AESA", "0", "Aplicaciones AESA", "✈️", "#4ecdc4")
         
-        # Posicionar tarjetas en grid
-        positions = [(0, 0), (0, 1), (0, 2), (1, 0), (1, 1), (1, 2)]
+        # Posicionar tarjetas en grid (ahora con 8 tarjetas, 3 columnas)
+        positions = [(0, 0), (0, 1), (0, 2), (1, 0), (1, 1), (1, 2), (2, 0), (2, 1)]
         for i, (card_key, card) in enumerate(self.metrics_cards.items()):
             row, col = positions[i] if i < len(positions) else (i // 3, i % 3)
             cards_layout.addWidget(card, row, col)
@@ -560,6 +562,8 @@ class DashboardWidget(QWidget):
             'pending': 0,
             'rejected': 0,
             'this_month': 0,
+            'apps_percent': 0,
+            'aesa': 0,
             'avg_time': 0,
             'monthly_data': {},
             'status_data': {}
@@ -574,7 +578,7 @@ class DashboardWidget(QWidget):
             metrics['total'] = cursor.fetchone()[0]
             
             # Contadores por estado usando el campo status
-            cursor.execute("SELECT COUNT(*) FROM homologations WHERE status = 'Aprobado'")
+            cursor.execute("SELECT COUNT(*) FROM homologations WHERE status = 'Aprobada'")
             approved_count = cursor.fetchone()[0]
             metrics['approved'] = approved_count
             
@@ -582,9 +586,29 @@ class DashboardWidget(QWidget):
             pending_count = cursor.fetchone()[0]
             metrics['pending'] = pending_count
             
-            cursor.execute("SELECT COUNT(*) FROM homologations WHERE status = 'Rechazado'")
+            cursor.execute("SELECT COUNT(*) FROM homologations WHERE status = 'Rechazada'")
             rejected_count = cursor.fetchone()[0]
             metrics['rejected'] = rejected_count
+            
+            # APPS% - buscar en repository_location, real_name o logical_name
+            cursor.execute("""
+                SELECT COUNT(*) FROM homologations 
+                WHERE repository_location = 'APPS$' 
+                OR UPPER(real_name) LIKE '%APPS%' 
+                OR UPPER(logical_name) LIKE '%APPS%'
+            """)
+            apps_count = cursor.fetchone()[0]
+            metrics['apps_percent'] = apps_count
+            
+            # AESA - buscar en repository_location, real_name o logical_name
+            cursor.execute("""
+                SELECT COUNT(*) FROM homologations 
+                WHERE repository_location = 'AESA' 
+                OR UPPER(real_name) LIKE '%AESA%' 
+                OR UPPER(logical_name) LIKE '%AESA%'
+            """)
+            aesa_count = cursor.fetchone()[0]
+            metrics['aesa'] = aesa_count
             
             # Este mes
             first_day = datetime.now().replace(day=1).strftime('%Y-%m-%d')
@@ -625,15 +649,20 @@ class DashboardWidget(QWidget):
     
     def update_metric_cards(self, metrics: Dict[str, Any]):
         """Actualiza las tarjetas de métricas."""
-        self.metrics_cards['total'].update_value(str(metrics['total']))
-        self.metrics_cards['approved'].update_value(str(metrics['approved']))
-        self.metrics_cards['pending'].update_value(str(metrics['pending']))
-        self.metrics_cards['rejected'].update_value(str(metrics['rejected']))
-        self.metrics_cards['this_month'].update_value(str(metrics['this_month']))
-        
-        # Tiempo promedio (simplificado)
-        avg_days = metrics.get('avg_time', 0)
-        self.metrics_cards['avg_time'].update_value(f"{avg_days} días")
+        try:
+            self.metrics_cards['total'].update_value(str(metrics.get('total', 0)))
+            self.metrics_cards['approved'].update_value(str(metrics.get('approved', 0)))
+            self.metrics_cards['pending'].update_value(str(metrics.get('pending', 0)))
+            self.metrics_cards['rejected'].update_value(str(metrics.get('rejected', 0)))
+            self.metrics_cards['this_month'].update_value(str(metrics.get('this_month', 0)))
+            self.metrics_cards['apps_percent'].update_value(str(metrics.get('apps_percent', 0)))
+            self.metrics_cards['aesa'].update_value(str(metrics.get('aesa', 0)))
+            
+            # Tiempo promedio (simplificado)
+            avg_days = metrics.get('avg_time', 0)
+            self.metrics_cards['avg_time'].update_value(f"{avg_days} días")
+        except Exception as e:
+            print(f"Error actualizando tarjetas de métricas: {e}")
     
     def update_charts(self, metrics: Dict[str, Any]):
         """Actualiza los gráficos."""

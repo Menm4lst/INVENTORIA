@@ -214,6 +214,12 @@ class HomologationFormDialog(QDialog):
         self.repository_location_combo.addItems(["Seleccionar...", "AESA", "APPS$"])
         group_layout.addRow("Repositorio:", self.repository_location_combo)
         
+        # Estado de la Homologación
+        self.status_combo = QComboBox()
+        self.status_combo.addItems(["Pendiente", "Aprobada", "Rechazada", "En Proceso"])
+        self.status_combo.setCurrentText("Pendiente")  # Valor por defecto
+        group_layout.addRow("Estado:", self.status_combo)
+        
         # Detalles / Observaciones
         self.details_edit = QTextEdit()
         self.details_edit.setPlaceholderText(
@@ -600,6 +606,12 @@ class HomologationFormDialog(QDialog):
             if index >= 0:
                 self.repository_location_combo.setCurrentIndex(index)
         
+        # Estado
+        status = data.get('status', 'Pendiente')
+        status_index = self.status_combo.findText(status)
+        if status_index >= 0:
+            self.status_combo.setCurrentIndex(status_index)
+        
         # Detalles
         self.details_edit.setPlainText(data.get('details', ''))
         
@@ -624,6 +636,9 @@ class HomologationFormDialog(QDialog):
             data['repository_location'] = repo
         else:
             data['repository_location'] = None
+        
+        # Estado
+        data['status'] = self.status_combo.currentText()
         
         # Usuario creador (solo para nuevas homologaciones)
         if not self.is_edit_mode and self.user_info:
