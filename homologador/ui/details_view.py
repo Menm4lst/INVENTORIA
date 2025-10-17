@@ -11,7 +11,7 @@ from PyQt6.QtWidgets import (
     QDialog, QVBoxLayout, QHBoxLayout, QFormLayout, QGridLayout,
     QLabel, QTextEdit, QFrame, QScrollArea, QWidget, QPushButton,
     QGroupBox, QTabWidget, QTableWidget, QTableWidgetItem,
-    QHeaderView, QMessageBox, QSizePolicy, QSpacerItem
+    QHeaderView, QMessageBox, QSizePolicy, QSpacerItem, QApplication
 )
 from PyQt6.QtCore import Qt, pyqtSignal, QThread, pyqtSlot
 from PyQt6.QtGui import QFont, QClipboard
@@ -630,35 +630,50 @@ class HomologationDetailsDialog(QDialog):
     
     def copy_to_clipboard(self):
         """Copia la información de la homologación al portapapeles."""
-        if not self.homologation_data:
-            return
-        
-        data = self.homologation_data
-        
-        text_info = []
-        text_info.append("=== INFORMACIÓN DE HOMOLOGACIÓN ===")
-        text_info.append(f"Nombre Real: {data.get('real_name', 'N/A')}")
-        text_info.append(f"Nombre Lógico: {data.get('logical_name', 'No especificado')}")
-        text_info.append(f"URL Documentación: {data.get('kb_url', 'No especificada')}")
-        text_info.append(f"KB SYNC: {'Activado' if data.get('kb_sync') else 'Desactivado'}")
-        text_info.append(f"Fecha Homologación: {self.format_date(data.get('homologation_date'))}")
-        text_info.append(f"Repositorio: {data.get('repository_location', 'No especificado')}")
-        text_info.append(f"Versiones Previas: {'Sí' if data.get('has_previous_versions') else 'No'}")
-        
-        if data.get('details'):
-            text_info.append(f"Detalles: {data['details']}")
-        
-        text_info.append(f"Creado por: {data.get('created_by_full_name') or data.get('created_by_username', 'Desconocido')}")
-        text_info.append(f"Fecha creación: {self.format_datetime(data.get('created_at'))}")
-        text_info.append(f"ID: {data.get('id')}")
-        
-        clipboard_text = "\n".join(text_info)
-        
-        # Copiar al portapapeles
-        clipboard = QApplication.clipboard()
-        clipboard.setText(clipboard_text)
-        
-        QMessageBox.information(self, "Copiado", "Información copiada al portapapeles")
+        try:
+            if not self.homologation_data:
+                QMessageBox.warning(self, "Error", "No hay información para copiar")
+                return
+            
+            data = self.homologation_data
+            
+            text_info = []
+            text_info.append("=== INFORMACIÓN DE HOMOLOGACIÓN ===")
+            text_info.append(f"Nombre Real: {data.get('real_name', 'N/A')}")
+            text_info.append(f"Nombre Lógico: {data.get('logical_name', 'No especificado')}")
+            text_info.append(f"URL Documentación: {data.get('kb_url', 'No especificada')}")
+            text_info.append(f"KB SYNC: {'Activado' if data.get('kb_sync') else 'Desactivado'}")
+            text_info.append(f"Fecha Homologación: {self.format_date(data.get('homologation_date'))}")
+            text_info.append(f"Repositorio: {data.get('repository_location', 'No especificado')}")
+            text_info.append(f"Versiones Previas: {'Sí' if data.get('has_previous_versions') else 'No'}")
+            
+            if data.get('details'):
+                text_info.append(f"Detalles: {data['details']}")
+            
+            text_info.append(f"Creado por: {data.get('created_by_full_name') or data.get('created_by_username', 'Desconocido')}")
+            text_info.append(f"Fecha creación: {self.format_datetime(data.get('created_at'))}")
+            text_info.append(f"ID: {data.get('id')}")
+            
+            clipboard_text = "\n".join(text_info)
+            
+            # Obtener aplicación y copiar al portapapeles
+            app = QApplication.instance()
+            if app is None:
+                QMessageBox.warning(self, "Error", "No se pudo acceder al portapapeles")
+                return
+                
+            clipboard = app.clipboard()
+            if clipboard is None:
+                QMessageBox.warning(self, "Error", "Portapapeles no disponible")
+                return
+                
+            clipboard.setText(clipboard_text)
+            
+            QMessageBox.information(self, "Copiado", "Información copiada al portapapeles")
+            
+        except Exception as e:
+            logger.error(f"Error al copiar al portapapeles: {e}")
+            QMessageBox.critical(self, "Error", f"Error al copiar información: {str(e)}")
     
     def request_edit(self):
         """Solicita editar la homologación."""
