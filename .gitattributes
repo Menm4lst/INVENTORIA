@@ -8,3 +8,5 @@ dist_x64/**/*.exe filter=lfs diff=lfs merge=lfs -text
 dist_x64/**/*.db filter=lfs diff=lfs merge=lfs -text
 dist_simple/**/*.exe filter=lfs diff=lfs merge=lfs -text
 dist_simple/**/*.db filter=lfs diff=lfs merge=lfs -text
+dist_ultra/**/*.exe filter=lfs diff=lfs merge=lfs -text
+dist_ultra/**/*.db filter=lfs diff=lfs merge=lfs -text
